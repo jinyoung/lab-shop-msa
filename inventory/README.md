@@ -6,6 +6,13 @@
 mvn spring-boot:run
 ```
 
+test http scripts:
+```
+http :8082/inventories id=1 stock=10
+http :8081/orders productId=1 qty=1
+http :8082/inventories/1
+```
+
 ## Packaging and Running in docker environment
 
 ```

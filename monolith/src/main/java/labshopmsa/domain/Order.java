@@ -18,34 +18,13 @@ public class Order  {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    
-    
-    
-    
-    
     private Long id;
-    
-    
-    
-    
     
     private String productId;
     
-    
-    
-    
-    
     private Integer qty;
     
-    
-    
-    
-    
     private String customerId;
-    
-    
-    
-    
     
     private Double amount;
 
@@ -56,9 +35,11 @@ public class Order  {
         // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
         labshopmsa.external.DecreaseStockCommand decreaseStockCommand = new labshopmsa.external.DecreaseStockCommand();
+        decreaseStockCommand.setQty(getQty());
+
         // mappings goes here
         MonolithApplication.applicationContext.getBean(labshopmsa.external.InventoryService.class)
-            .decreaseStock(/* get???(), */ decreaseStockCommand);
+            .decreaseStock(Long.valueOf(getProductId()), decreaseStockCommand);
 
 
 
